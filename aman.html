@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jun's Resume</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: black;
+            color: #0f0;
+            font-family: 'VT323', monospace;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .hacker-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .hacker-terminal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: #0f0;
+            font-family: 'VT323', monospace;
+            font-size: 16px;
+            white-space: pre-wrap;
+            overflow: hidden;
+            opacity: 0.8;
+            z-index: -1;
+            pointer-events: none;
+            padding: 20px;
+        }
+        .container {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            align-items: center;
+            animation: slideUp 1s ease-in-out;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .name {
+            font-size: 36px;
+            font-weight: bold;
+            text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
+            animation: blinkText 1s infinite alternate;
+        }
+        @keyframes blinkText {
+            0% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+        .section {
+            width: 60%;
+            padding: 20px;
+            border: 1px solid #0f0;
+            text-align: center;
+        }
+        .section h2 {
+            text-transform: uppercase;
+            color: #00ffcc;
+            text-shadow: 0 0 10px #00ffcc, 0 0 20px #008080;
+        }
+    </style>
+</head>
+<body>
+    <div class="hacker-background"></div>
+    <div class="hacker-terminal" id="terminal"></div>
+    <div class="container" id="resume-container">
+        <div class="name">AmaN Singh</div>
+        <h4>Bug bounty hunter | Security researcher</h4>
+        <section class="section" id="about">
+            <h2>About</h2>
+            <p>Experienced in Vulnerability Assessment and Penetration Testing (VAPT) with a strong background in identifying and mitigating security vulnerabilities. Skilled in web application security, Android Testing, network assessments, and exploitation techniques. Proficient in tools like Burp Suite, Caido, sqlmap and Nmap, with hands-on experience reporting critical issues such as XSS, race condition, and privilege escalation and many more. Dedicated to enhancing organizational security through detailed assessments and actionable recommendations.</p>
+        </section>
+        <section class="section" id="skills">
+            <h2>Skills</h2>
+            <p>Web & API Security: OWASP Top 10, API security testing, web vulnerability assessments (XSS, IDOR, SSRF, Access Control, Authentication Bypass, Race condition etc.)
+                Mobile Security: penetration testing (APK decompilation, Static and dynamic analysis , Frida,  MobSF,  dex2jar, JD-GUI)
+                Tools & Automation: Burp-Suite, Caido, Sqlmap, nmap,  wpscan, Nikto,  Kali-Linux, Python scripting for automation
+                Recon & OSINT: Subdomain enumeration, Directory brute-forcing, Port-scanning, Dorking (github, google and yahoo)  Shodan, Censys, Fofa etc.
+                </p>
+        </section>
+        <section class="section" id="experience">
+            <h2>Experience</h2>
+            <p>I am a part-time bug hunter on HackerOne with 2 years of practical experience. As a web application security researcher, I have contributed to securing numerous companies. Skilled in security testing methodologies, including OWASP Top 10, black-box testing, and ethical hacking techniques. Collaborated with security teams to ensure timely mitigation of reported issues, enhancing the overall security posture of client, I have successfully identified and reported over 50 security vulnerabilities across various platforms, earning 1000+ reputation on HackerOne. My findings have enhanced cybersecurity measures for multiple organizations. Additionally, I have received recognition and monetary rewards for discovering critical vulnerabilities, including XSS, race conditions, XXE, CSRF, and privilege escalation issues.</p>
+        </section>
+    </div>
+    
+    <script>
+        const terminal = document.getElementById('terminal');
+        const resumeContainer = document.getElementById('resume-container');
+        const hackerText = `
+        !!!!!!!!!!Alert!!!!!!!!!!
+        System has been hacked
+        [*] Initiating hack...
+        [*] Hacking into the mainframe...
+        [*] Bypassing firewalls...
+        [*] Initializing system...
+        [*] Connecting to secure server...
+        [*] Access granted
+        [*] Escaping...
+        [*] Shutting down...
+        [*] System compromised!      
+        `;
+        
+        function typeWriterEffect(text, element, speed, callback) {
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else if (callback) {
+                    setTimeout(callback, 2000);
+                }
+            }
+            type();
+        }
+        
+        typeWriterEffect(hackerText, terminal, 1, () => {
+            resumeContainer.style.display = 'flex';
+        });
+    </script>
+</body>
+</html>
